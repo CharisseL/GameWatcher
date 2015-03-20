@@ -18,7 +18,8 @@ namespace GameWatcher.Controllers
         // GET: Games
         public async Task<ActionResult> Index()
         {
-            return View(await db.Games.ToListAsync());
+            var games = db.Games.Include(g => g.Channel);
+            return View(await games.ToListAsync());
         }
 
         // GET: Games/Details/5
@@ -39,6 +40,7 @@ namespace GameWatcher.Controllers
         // GET: Games/Create
         public ActionResult Create()
         {
+            ViewBag.ChannelId = new SelectList(db.Channels, "ChannelId", "ChannelName");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace GameWatcher.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "GameId,AwayTeam,HomeTeam,AwayScore,HomeScore")] Game game)
+        public async Task<ActionResult> Create([Bind(Include = "GameId,AwayTeam,HomeTeam,AwayScore,HomeScore,ChannelId")] Game game)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +58,7 @@ namespace GameWatcher.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ChannelId = new SelectList(db.Channels, "ChannelId", "ChannelName", game.ChannelId);
             return View(game);
         }
 
@@ -71,6 +74,7 @@ namespace GameWatcher.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ChannelId = new SelectList(db.Channels, "ChannelId", "ChannelName", game.ChannelId);
             return View(game);
         }
 
@@ -79,7 +83,7 @@ namespace GameWatcher.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "GameId,AwayTeam,HomeTeam,AwayScore,HomeScore")] Game game)
+        public async Task<ActionResult> Edit([Bind(Include = "GameId,AwayTeam,HomeTeam,AwayScore,HomeScore,ChannelId")] Game game)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +91,7 @@ namespace GameWatcher.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.ChannelId = new SelectList(db.Channels, "ChannelId", "ChannelName", game.ChannelId);
             return View(game);
         }
 

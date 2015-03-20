@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Channel.ChannelName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.AwayTeam)
         </th>
         <th>
@@ -28,6 +31,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Channel.ChannelName)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.AwayTeam)
         </td>

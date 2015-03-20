@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameWatcher.Models
 {
@@ -15,6 +16,9 @@ namespace GameWatcher.Models
         public string HomeTeam { get; set;}
         public int AwayScore { get; set; }
         public int HomeScore { get; set; }
+
+        [ForeignKey("Channel")]
+        public int ChannelId { get; set; }
         public Channel Channel { get; set; }
     }
 }
