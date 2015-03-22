@@ -5,3 +5,25 @@
 <h3>@ViewBag.Message</h3>
 
 <p>Use this area to provide additional information.</p>
+
+<div id="gameData"></div>
+
+@section    scripts
+{
+    <script>
+        $.ajax({
+            url: "http://localhost:51101/api/games",
+            type: "Get",
+
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#gameData").append("<p>Game: " + data[i].AwayTeam + "" + data[i].HomeTeam + "</p>");
+                }
+            },
+            
+        error: function (msg) { alert(msg); }
+        });
+    </script>
+    
+    
+}
