@@ -1,10 +1,10 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Lineup";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<p>These games are on tap for today:</p>
 
 <div id="gameData"></div>
 
@@ -17,7 +17,7 @@
 
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    $("#gameData").append("<p>Game: " + data[i].AwayTeam + "" + data[i].HomeTeam + "</p>");
+                    $("#gameData").append(data[i].AwayTeam + " vs. " + data[i].HomeTeam + "</p>");
                 }
             },
             
