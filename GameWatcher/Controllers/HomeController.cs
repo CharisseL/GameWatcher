@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameWatcher.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,9 +23,13 @@ namespace GameWatcher.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            var model = new IndexVM();
 
-            return View();
+            using (var db = new GameWatcherContext())
+            {
+                model.Games = db.Games.ToList();
+            }
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
     }
 }

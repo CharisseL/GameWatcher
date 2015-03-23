@@ -1,57 +1,70 @@
-﻿@model IEnumerable<GameWatcher.Models.Game>
+﻿
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Games Watched";
 }
 
-<h2>Index</h2>
+<div class="container" ng-app="app" ng-controller="GameCtrl">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Games Watched</h2>
+            <p>{{model | json}}</p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Channel.ChannelName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AwayTeam)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HomeTeam)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AwayScore)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HomeScore)
-        </th>
-        <th></th>
-    </tr>
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            {{game.ChannelName}}
+                        </th>
+                        <th>
+                            {{game.AwayTeam}}
+                        </th>
+                        <th>
+                            {{game.HomeTeam}}
+                        </th>
+                        <th>
+                            {{game.AwayScore}}
+                        </th>
+                        <th>
+                            {{game.HomeScore}}
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Channel.ChannelName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AwayTeam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HomeTeam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AwayScore)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HomeScore)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.GameId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.GameId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.GameId })
-        </td>
-    </tr>
-}
+                    <tr ng-repeat="game in model.Games">
+                        <td>
+                            {{game.Channel.ChannelName}}
+                        </td>
+                        <td>
+                            {{game.AwayTeam}}
+                        </td>
+                        <td>
+                            {{game.HomeTeam}}
+                        </td>
+                        <td>
+                            {{game.AwayScore}}
+                        </td>
+                        <td>
+                            {{game.HomeScore}}
+                        </td>
+                        <td>
+                            {{Html.ActionLink("Edit", "Edit", new { id = game.GameId })}} |
+                            {{Html.ActionLink("Details", "Details", new { id = game.GameId })}} |
+                            {{Html.ActionLink("Delete", "Delete", new { id = item.GameId })}}
+                        </td>
+                    </tr>
+                </tbody>
+                }
 
-</table>
+            </table>
+        </div>
+        
+    </div>
+</div>
+
+
