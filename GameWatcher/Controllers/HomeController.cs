@@ -16,7 +16,7 @@ namespace GameWatcher.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "These games are on tap for today:";
 
             return View();
         }

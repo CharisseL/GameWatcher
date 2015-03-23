@@ -22,6 +22,19 @@ namespace GameWatcher.Controllers
             return View(await games.ToListAsync());
         }
 
+        public async Task<ActionResult> IndexVM()
+        {
+            {
+                var model = new IndexVM();
+
+                using (var db = new GameWatcherContext())
+                {
+                    model.Games = db.Games.ToList();
+                }
+                return Json(model, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         // GET: Games/Details/5
         public async Task<ActionResult> Details(int? id)
         {

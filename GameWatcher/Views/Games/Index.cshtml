@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<GameWatcher.Models.Game>
 
 @{
     ViewBag.Title = "Games Watched";
@@ -13,52 +13,50 @@
             <p>
                 @Html.ActionLink("Create New", "Create")
             </p>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>
-                            {{game.ChannelName}}
-                        </th>
-                        <th>
-                            {{game.AwayTeam}}
-                        </th>
-                        <th>
-                            {{game.HomeTeam}}
-                        </th>
-                        <th>
-                            {{game.AwayScore}}
-                        </th>
-                        <th>
-                            {{game.HomeScore}}
-                        </th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Channel.ChannelName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AwayTeam)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HomeTeam)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AwayScore)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HomeScore)
+                    </th>
+                    <th></th>
+                </tr>
 
-                    <tr ng-repeat="game in model.Games">
+                @foreach (var item in Model)
+                {
+                    <tr>
                         <td>
-                            {{game.Channel.ChannelName}}
+                            @Html.DisplayFor(modelItem => item.Channel.ChannelName)
                         </td>
                         <td>
-                            {{game.AwayTeam}}
+                            @Html.DisplayFor(modelItem => item.AwayTeam)
                         </td>
                         <td>
-                            {{game.HomeTeam}}
+                            @Html.DisplayFor(modelItem => item.HomeTeam)
                         </td>
                         <td>
-                            {{game.AwayScore}}
+                            @Html.DisplayFor(modelItem => item.AwayScore)
                         </td>
                         <td>
-                            {{game.HomeScore}}
+                            @Html.DisplayFor(modelItem => item.HomeScore)
                         </td>
                         <td>
-                            {{Html.ActionLink("Edit", "Edit", new { id = game.GameId })}} |
-                            {{Html.ActionLink("Details", "Details", new { id = game.GameId })}} |
-                            {{Html.ActionLink("Delete", "Delete", new { id = item.GameId })}}
+                            @Html.ActionLink("Edit", "Edit", new { id = item.GameId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.GameId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.GameId })
                         </td>
                     </tr>
-                </tbody>
                 }
 
             </table>
