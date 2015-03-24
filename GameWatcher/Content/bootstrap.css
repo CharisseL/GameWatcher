@@ -73,6 +73,7 @@ a:hover {
 h1 {
   margin: 0.67em 0;
   font-size: 2em;
+  color: lightgray;
 }
 
 abbr[title] {
@@ -92,6 +93,7 @@ hr {
   height: 0;
   -moz-box-sizing: content-box;
        box-sizing: content-box;
+       color: whitesmoke;
 }
 
 mark {
@@ -314,7 +316,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
-  color: #333333;
+  color: lightgray;
   background-color: #ffffff;
 }
 
@@ -402,6 +404,7 @@ hr {
 
 p {
   margin: 0 0 10px;
+  color: white;
 }
 
 .lead {
@@ -476,6 +479,7 @@ h6,
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
+  color: lightgray;
 }
 
 h1 small,
@@ -4927,6 +4931,10 @@ a.list-group-item.active > .badge,
   margin-left: 3px;
 }
 
+div.backdrop {
+    opacity: 0.2;
+}
+
 .jumbotron {
   padding: 30px;
   margin-bottom: 30px;
@@ -4934,12 +4942,12 @@ a.list-group-item.active > .badge,
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: black;
 }
 
 .jumbotron h1 {
   line-height: 1;
-  color: inherit;
+  color: lightgray;
 }
 
 .jumbotron p {
