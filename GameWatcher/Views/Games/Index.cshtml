@@ -1,68 +1,75 @@
-﻿@model IEnumerable<GameWatcher.Models.Game>
-
+﻿
 @{
     ViewBag.Title = "Games Watched";
 }
-
 <div class="container" ng-app="app" ng-controller="GameCtrl">
     <div class="row">
         <div class="col-md-12">
             <h2>Games Watched</h2>
-            <p>{{model | json}}</p>
-
+           
+            <div>
+                
+                
+                <p>{{model | json}}</p>
+            </div>
             <p>
                 @Html.ActionLink("Create New", "Create")
             </p>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Channel.ChannelName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.AwayTeam)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.HomeTeam)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.AwayScore)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.HomeScore)
-                        </th>
-                        <th></th>
+                        <th>Channel Name</th>
+                        <th>Away Team</th>
+                        <th>Home Team</th>
+                        <th>Away Score</th>
+                        <th>Home Score</th>
                     </tr>
                 </thead>
                 <tbody>
+                  
+                    <tr ng-repeat="game in model.Games">
+                        <td>
+                            {{model.Channel}}
+                        </td>
+                        <td> 
+                            {{model.AwayTeam}}
+                        </td>
+                        <td>
+                            {{model.HomeTeam}}
+                        </td>
+                        <td>
+                            {{model.AwayScore}}
+                        </td>
+                        <td>
+                            {{model.HomeScore}}
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Edit")/?id = {{game.GameId }}"></a> |
+                            <a href="@Url.Action("Details", "Details")/?id = {{game.GameId }}"></a> |
+                            <a href="@Url.Action("Delete", "Delete")/?id = {{game.GameId }}"></a>
+                        </td> 
+                    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr ng-repeat="item in">
-            <td>
-                {{games.AwayTeam}}
-            </td>
-            <td> 
-                @Html.DisplayFor(modelItem => item.AwayTeam)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomeTeam)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AwayScore)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HomeScore)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.GameId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.GameId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.GameId })
-            </td>
-        </tr>
-    }
+                    <tr ng-if="model.Games.length == 0">
+                            <td colspan="4" class="text-center">There are no games to display</td>
+                    </tr>
+
+                    <tr ng-if="states.showGameForm">
+                        <td>
+                            <input type="text" class="form-control" placeholder="Game"/>
+                            <input type="text" class="form-control" placeholder="Away Team"/>
+                            <input type="text" class="form-control" placeholder="Home Team" />
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Add</button>
+                            <button type="button" class="btn btn-default" ng-click="showgameform(false)">Cancel</button>
+                        </td>
+                    </tr>
+                    
+                    
             </tbody>
             </table>
+            <a ng-click="showGameForm(true)" class="btn btn-primary">Add Game</a>
         </div>
         
     </div>

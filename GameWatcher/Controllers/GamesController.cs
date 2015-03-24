@@ -16,14 +16,14 @@ namespace GameWatcher.Controllers
         private GameWatcherContext db = new GameWatcherContext();
 
         // GET: Games
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var games = db.Games.Include(g => g.Channel);
-            return View(await games.ToListAsync());
+            return View();
         }
 
         public async Task<ActionResult> IndexVM()
         {
+           var populatedModel = await Task.Run(() =>
             {
                 var model = new IndexVM();
 
@@ -31,8 +31,10 @@ namespace GameWatcher.Controllers
                 {
                     model.Games = db.Games.ToList();
                 }
-                return Json(model, JsonRequestBehavior.AllowGet);
-            }
+                return model;
+                
+            });
+            return Json(populatedModel, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Games/Details/5

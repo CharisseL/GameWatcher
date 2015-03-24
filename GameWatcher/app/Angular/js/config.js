@@ -1,9 +1,7 @@
-﻿(function () {
+﻿;(function () {
     'use strict';
 
-    angular.module('GW.GameController', [
-
-    ])
+    angular.module('watcherApp')
         .config(function ($routeProvider) {
             $routeProvider
             .when('/games', {
