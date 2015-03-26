@@ -23,13 +23,8 @@ namespace GameWatcher.Controllers
 
         public ActionResult Contact()
         {
-            var model = new IndexVM();
-
-            using (var db = new GameWatcherContext())
-            {
-                model.Games = db.Games.ToList();
-            }
-            return Json(model, JsonRequestBehavior.AllowGet);
+           
+            return View();
         }
     }
 }
