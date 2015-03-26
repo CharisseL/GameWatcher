@@ -63,14 +63,13 @@ namespace GameWatcher.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "GameId,AwayTeam,HomeTeam,AwayScore,HomeScore,ChannelId")] Game game)
         {
             if (ModelState.IsValid)
             {
                 db.Games.Add(game);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return Json(game, JsonRequestBehavior.AllowGet);
             }
 
             ViewBag.ChannelId = new SelectList(db.Channels, "ChannelId", "ChannelName", game.ChannelId);

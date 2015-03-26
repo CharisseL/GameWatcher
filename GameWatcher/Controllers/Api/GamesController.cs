@@ -20,7 +20,7 @@ namespace GameWatcher.Controllers.Api
         // GET: api/Games
         public IQueryable<Game> GetGames()
         {
-            return db.Games.Include(p => p.Channel);
+            return db.Games.Include(p => p.HomeTeam);
         }
 
         // GET: api/Games/5

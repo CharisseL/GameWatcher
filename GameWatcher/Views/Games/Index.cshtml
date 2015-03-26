@@ -1,24 +1,15 @@
-﻿
-@{
-    ViewBag.Title = "Games Watched";
+﻿@{
+    ViewBag.Title = "March Madness";
 }
 <div class="container" ng-app="watcherApp" ng-controller="GameCtrl">
     <div class="row">
         <div class="col-md-12">
-            <h2>Games Watched</h2>
-           
-            <div>
-                
-                
-                <p>{{model | json}}</p>
-            </div>
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
+            <h2>March Madness</h2>
+          
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Channel Name</th>
+                        <th>Tourney Round</th>
                         <th>Away Team</th>
                         <th>Home Team</th>
                         <th>Away Score</th>
@@ -66,14 +57,17 @@
                             <input type="text" class="form-control" placeholder="Game" ng-model="new.Game.AwayScore" />
                         </td>
                         <td>
-                            <input type="text" class="form-control" placeholder="Game" ng-model="new.Game.Channel" />
+                            <input type="text" class="form-control" placeholder="Game" ng-model="new.Game.HomeScore" />
                         </td>
                         <td>
-                            <button type="button" class="btn btn-primary">Add</button>
+                            <button type="button" class="btn btn-primary" ng-click="addGame()">Add</button>
                         </td>
                         <td>    
                             <button type="button" class="btn btn-default" ng-click="showGameForm(false)">Cancel</button>
                         </td>
+                    </tr>
+                    <tr>
+                        <<td colspan="4">{{new.Game | json}}</td>
                     </tr>
                     
                     

@@ -17,8 +17,8 @@ namespace GameWatcher.Models
         public int AwayScore { get; set; }
         public int HomeScore { get; set; }
 
-        [ForeignKey("Channel")]
-        public int ChannelId { get; set; }
+       
+        public int? ChannelId { get; set; }
         public Channel Channel { get; set; }
     }
 }
