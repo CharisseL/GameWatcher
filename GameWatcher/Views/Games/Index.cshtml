@@ -29,19 +29,19 @@
                   
                     <tr ng-repeat="game in model.Games">
                         <td>
-                            {{model.Channel}}
+                            {{game.Channel}}
                         </td>
                         <td> 
-                            {{model.AwayTeam}}
+                            {{game.AwayTeam}}
                         </td>
                         <td>
-                            {{model.HomeTeam}}
+                            {{game.HomeTeam}}
                         </td>
                         <td>
-                            {{model.AwayScore}}
+                            {{game.AwayScore}}
                         </td>
                         <td>
-                            {{model.HomeScore}}
+                            {{game.HomeScore}}
                         </td>
                         <td>
                             <a href="@Url.Action("Edit", "Edit")/?id = {{game.GameId }}"></a> |
@@ -51,17 +51,23 @@
                     </tr>
 
                     <tr ng-if="model.Games.length == 0">
-                            <td colspan="4" class="text-center">There are no games to display</td>
+                            <td colspan="8" class="text-center">There are no games to display</td>
                     </tr>
 
                     <tr ng-if="states.showGameForm">
                         <td>
                             <input type="text" class="form-control" placeholder="Game"/>
+                        </td>
+                        <td>
                             <input type="text" class="form-control" placeholder="Away Team"/>
+                        </td>
+                        <td>
                             <input type="text" class="form-control" placeholder="Home Team" />
                         </td>
                         <td>
                             <button type="button" class="btn btn-primary">Add</button>
+                        </td>
+                        <td>    
                             <button type="button" class="btn btn-default" ng-click="showgameform(false)">Cancel</button>
                         </td>
                     </tr>
