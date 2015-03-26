@@ -51,24 +51,28 @@
                     </tr>
 
                     <tr ng-if="model.Games.length == 0">
-                            <td colspan="8" class="text-center">There are no games to display</td>
+                            <td colspan="4" class="text-center">There are no games to display</td>
                     </tr>
 
-                    <tr ng-if="states.showGameForm">
+                    <tr id="gameSubmit" ng-if="states.showGameForm">
+                        <
                         <td>
-                            <input type="text" class="form-control" placeholder="Game"/>
+                            <input type="text" class="form-control" placeholder="Away Team" ng-model="new.Game.AwayTeam" />
                         </td>
                         <td>
-                            <input type="text" class="form-control" placeholder="Away Team"/>
+                            <input type="text" class="form-control" placeholder="Home Team" ng-model="new.Game.HomeTeam" />
                         </td>
                         <td>
-                            <input type="text" class="form-control" placeholder="Home Team" />
+                            <input type="text" class="form-control" placeholder="Game" ng-model="new.Game.AwayScore" />
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" placeholder="Game" ng-model="new.Game.Channel" />
                         </td>
                         <td>
                             <button type="button" class="btn btn-primary">Add</button>
                         </td>
                         <td>    
-                            <button type="button" class="btn btn-default" ng-click="showgameform(false)">Cancel</button>
+                            <button type="button" class="btn btn-default" ng-click="showGameForm(false)">Cancel</button>
                         </td>
                     </tr>
                     
